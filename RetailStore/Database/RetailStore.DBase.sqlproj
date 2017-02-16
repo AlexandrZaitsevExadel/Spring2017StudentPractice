@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>RetailStore.Database</Name>
+    <Name>RetailStore.DBase</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{67eca0e7-3933-49b8-b83a-605450590508}</ProjectGuid>
@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>Database</RootNamespace>
-    <AssemblyName>Database</AssemblyName>
+    <RootNamespace>DBase</RootNamespace>
+    <AssemblyName>DBase</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -59,6 +59,7 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RSDBScheme.scmp" />
@@ -67,5 +68,9 @@
     <Build Include="dbo\Tables\PurchaseTable.sql" />
     <Build Include="dbo\Tables\ClientTable.sql" />
     <Build Include="dbo\Tables\AccessoryTable.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateAccessory.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertAccessory.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAccessoryRecords.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteAccessory.sql" />
   </ItemGroup>
 </Project>
