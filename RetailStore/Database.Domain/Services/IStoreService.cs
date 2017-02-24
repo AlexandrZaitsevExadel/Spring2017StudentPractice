@@ -8,15 +8,16 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using System.Data;
+using DBase.Domain.Models;
 
 namespace DBase.Domain.Services
 {
-    interface CRUD
+    public interface IStoreService
     {
-        void create(Database db, int id, string name, int price);
-        DataSet read(Database db);
-        void update(Database db, int id, string name, int price);
-        void delete(Database db, int id);        
+        int Create(AccessoryTable accessoryTable);
+        DataSet Read();
+        void Update(AccessoryTable accessoryTable);
+        void Delete(int id);        
     }
 
 }

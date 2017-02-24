@@ -3,7 +3,3 @@ C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\bin\Debug\DBase
 C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\bin\Debug\DBase.pdb
 C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\obj\Debug\DBase.dll
 C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\obj\Debug\DBase.pdb
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\obj\Debug\Model.xml
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\obj\Debug\refactor.xml
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\obj\Debug\postdeploy.sql
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\obj\Debug\predeploy.sql

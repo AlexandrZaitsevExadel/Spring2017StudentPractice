@@ -17,3 +17,6 @@ C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database.Domain\bin\Debu
 C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database.Domain\bin\Debug\DBase.Domain.pdb
 C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database.Domain\obj\Debug\DBase.Domain.dll
 C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database.Domain\obj\Debug\DBase.Domain.pdb
+C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database.Domain\bin\Debug\Autofac.dll
+C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database.Domain\bin\Debug\Autofac.xml
+C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database.Domain\obj\Debug\RetailStore.DBase.Domain.csprojResolveAssemblyReference.cache

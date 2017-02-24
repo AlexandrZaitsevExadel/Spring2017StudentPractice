@@ -11,24 +11,28 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using DBase.Domain.Services;
+using DBase.Domain.Models;
 
 
 namespace TestWithForm
 {
     public partial class Form1 : Form
     {
-        StockService serviceClass = new StockService();
-        Database db = DatabaseFactory.CreateDatabase("TestWithForm.Properties.Settings.Setting");
+        static string connectionStringName = "TestWithForm.Properties.Settings.Setting";
+        //static Database db = DatabaseFactory.CreateDatabase("TestWithForm.Properties.Settings.Setting");
+        IStoreService serviceClass; //= new StockService(connectionStringName);
         DataSet accessoryDataSet = new DataSet();
+        private AccessoryTable _accessoryTable;
 
-        public Form1()
+        public Form1(IStoreService sc)
         {
+            serviceClass = sc;
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataSet accessoryDataSet = serviceClass.read(db);
+            DataSet accessoryDataSet = serviceClass.Read();
             dataGridView1.DataSource = accessoryDataSet.Tables[0];
             dataGridView1.AutoGenerateColumns = true;
         }
@@ -36,20 +40,22 @@ namespace TestWithForm
         
         private void button1_Click(object sender, EventArgs e)
         {
-            serviceClass.create(db, Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
-            dataGridView1.DataSource = serviceClass.read(db).Tables[0];
+            _accessoryTable = new AccessoryTable(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
+            serviceClass.Create(_accessoryTable);
+            dataGridView1.DataSource = serviceClass.Read().Tables[0];
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            serviceClass.delete(db, Convert.ToInt32(textBox1.Text));
-            dataGridView1.DataSource = serviceClass.read(db).Tables[0];
+            serviceClass.Delete(Convert.ToInt32(textBox1.Text));
+            dataGridView1.DataSource = serviceClass.Read().Tables[0];
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            serviceClass.update(db, Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
-            dataGridView1.DataSource = serviceClass.read(db).Tables[0];
+            _accessoryTable = new AccessoryTable(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
+            serviceClass.Update(_accessoryTable);
+            dataGridView1.DataSource = serviceClass.Read().Tables[0];
         }
     }
 }

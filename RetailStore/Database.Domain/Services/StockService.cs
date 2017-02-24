@@ -5,33 +5,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using DBase.Domain.Models;
 
 namespace DBase.Domain.Services
 {
-    public class StockService : CRUD
+    public class StockService : IStoreService
     {
 
-        public void create(Database db, int id, string name, int price)
+        private Database _db;
+
+        public StockService(string connectionStringName)
         {
-            db.ExecuteNonQuery("spInsertAccessory", new object[] {id, name, price });
+            Database db = DatabaseFactory.CreateDatabase(connectionStringName);
+            this._db = db;
         }
 
-        public DataSet read(Database db)
+        public int Create(AccessoryTable accessoryTable)
         {
-
-            return db.ExecuteDataSet("spGetAccessoryRecords");
+            return _db.ExecuteNonQuery("spInsertAccessory", new object[] { accessoryTable.accessoryId, accessoryTable.accessoryName, accessoryTable.price });
         }
 
-        public void update(Database db, int id, string name, int price)
+        public DataSet Read()
         {
 
-            db.ExecuteNonQuery("spUpdateAccessory", new object[] { id, name, price });
+            return _db.ExecuteDataSet("spGetAccessoryRecords");
         }
 
-        public void delete(Database db, int id)
+        public void Update(AccessoryTable accessoryTable)
         {
 
-            db.ExecuteNonQuery("spDeleteAccessory", new object[] { id });
+            _db.ExecuteNonQuery("spUpdateAccessory", new object[] { accessoryTable.accessoryId, accessoryTable.accessoryName, accessoryTable.price });
+        }
+
+        public void Delete(int id)
+        {
+
+            _db.ExecuteNonQuery("spDeleteAccessory", new object[] { id });
         }
     }
 }
