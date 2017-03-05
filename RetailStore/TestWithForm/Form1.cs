@@ -19,8 +19,7 @@ namespace TestWithForm
     public partial class Form1 : Form
     {
         static string connectionStringName = "TestWithForm.Properties.Settings.Setting";
-        //static Database db = DatabaseFactory.CreateDatabase("TestWithForm.Properties.Settings.Setting");
-        IStoreService serviceClass; //= new StockService(connectionStringName);
+        IStoreService serviceClass;
         DataSet accessoryDataSet = new DataSet();
         private AccessoryTable _accessoryTable;
 
