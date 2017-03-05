@@ -1,5 +1,0 @@
-D:\1\Database.Domain\Database.Domain\bin\Debug\Database.Domain.dll
-D:\1\Database.Domain\Database.Domain\bin\Debug\Database.Domain.pdb
-D:\1\Database.Domain\Database.Domain\obj\Debug\Database.Domain.csprojResolveAssemblyReference.cache
-D:\1\Database.Domain\Database.Domain\obj\Debug\Database.Domain.dll
-D:\1\Database.Domain\Database.Domain\obj\Debug\Database.Domain.pdb

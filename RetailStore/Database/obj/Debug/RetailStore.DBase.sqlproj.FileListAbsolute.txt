@@ -1,5 +1,0 @@
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\bin\Debug\RetailStore.DBase.dacpac
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\bin\Debug\DBase.dll
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\bin\Debug\DBase.pdb
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\obj\Debug\DBase.dll
-C:\Users\Der Nord\Spring2017StudentPractice\RetailStore\Database\obj\Debug\DBase.pdb

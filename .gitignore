@@ -1,2 +1,11 @@
 /RetailStore/Database/*.user
 /RetailStore/Database/*.dbmdl
+*.jfm
+/RetailStore/Database/bin
+/RetailStore/Database/obj
+/RetailStore/Database.Domain/bin
+/RetailStore/Database.Domain/obj
+/RetailStore/packages
+*.user
+/RetailStore/WebAPI/bin
+/RetailStore/WebAPI/obj
