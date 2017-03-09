@@ -16,25 +16,24 @@ namespace DBase.Domain.Services
 
         public StockService(string connectionStringName)
         {
-            Database db = DatabaseFactory.CreateDatabase(connectionStringName);
-            this._db = db;
+           _db = DatabaseFactory.CreateDatabase(connectionStringName);
         }
 
-        public int Create(AccessoryTable accessoryTable)
+        public int Create(Accessory accessory)
         {
-            return _db.ExecuteNonQuery("spInsertAccessory", new object[] { accessoryTable.accessoryId, accessoryTable.accessoryName, accessoryTable.price });
+            return _db.ExecuteNonQuery("spInsertAccessory", new object[] { accessory.accessoryId, accessory.accessoryName, accessory.price });
         }
 
-        public DataSet Read()
+        public IList<Accessory> Read()
         {
 
-            return _db.ExecuteDataSet("spGetAccessoryRecords");
+            return _db.ExecuteDataSet("spGetAccessoryRecords").Tables[0].AsEnumerable().Select(row => new Accessory(Convert.ToInt32(row["AccessoryId"]), Convert.ToString(row["AccessoryName"]), Convert.ToInt32(row["Price"]))).ToList();;
         }
 
-        public void Update(AccessoryTable accessoryTable)
+        public void Update(Accessory accessory)
         {
 
-            _db.ExecuteNonQuery("spUpdateAccessory", new object[] { accessoryTable.accessoryId, accessoryTable.accessoryName, accessoryTable.price });
+            _db.ExecuteNonQuery("spUpdateAccessory", new object[] { accessory.accessoryId, accessory.accessoryName, accessory.price });
         }
 
         public void Delete(int id)

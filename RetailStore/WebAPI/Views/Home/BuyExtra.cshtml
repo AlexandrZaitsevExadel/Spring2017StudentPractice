@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "BuyExtra";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Купить еще</title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <input type="hidden" value="@ViewBag.purchaseId" name="purchaseId" />
+            <table>
+                <tr>
+                    <td><p>Введите количество комплектующих, которое вы хотите докупить :</p></td>
+                    <td>
+                        <input type="text" name="quantity" />
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+

@@ -65,12 +65,20 @@
     <None Include="RSDBScheme.scmp" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\PurchaseTable.sql" />
-    <Build Include="dbo\Tables\ClientTable.sql" />
-    <Build Include="dbo\Tables\AccessoryTable.sql" />
     <Build Include="dbo\Stored Procedures\spUpdateAccessory.sql" />
     <Build Include="dbo\Stored Procedures\spInsertAccessory.sql" />
     <Build Include="dbo\Stored Procedures\spGetAccessoryRecords.sql" />
     <Build Include="dbo\Stored Procedures\spDeleteAccessory.sql" />
+    <Build Include="dbo\Tables\PurchaseTable.sql" />
+    <Build Include="dbo\Tables\ClientTable.sql" />
+    <Build Include="dbo\Tables\AccessoryTable.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertPurchase.sql" />
+    <Build Include="dbo\Stored Procedures\spGetPurchaseById.sql" />
+    <Build Include="dbo\Stored Procedures\spGetClientById.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAccessoryById.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertClient.sql" />
+    <Build Include="dbo\Stored Procedures\spGetPurchaseRecords.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdatePurchase.sql" />
+    <Build Include="dbo\Stored Procedures\spDeletePurchase.sql" />
   </ItemGroup>
 </Project>

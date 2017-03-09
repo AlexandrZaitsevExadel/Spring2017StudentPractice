@@ -2,15 +2,15 @@
 <SchemaComparison>
   <Version>10</Version>
   <SourceModelProvider>
+    <ConnectionBasedModelProvider>
+      <ConnectionString>Data Source=DERCOMPUTER;Initial Catalog=ComputerAccesoriesRetail;Integrated Security=True;Pooling=False;MultipleActiveResultSets=False;Packet Size=4096</ConnectionString>
+    </ConnectionBasedModelProvider>
+  </SourceModelProvider>
+  <TargetModelProvider>
     <ProjectBasedModelProvider>
       <ProjectGuid>{67eca0e7-3933-49b8-b83a-605450590508}</ProjectGuid>
       <Name>RetailStore.DBase</Name>
     </ProjectBasedModelProvider>
-  </SourceModelProvider>
-  <TargetModelProvider>
-    <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=DERCOMPUTER;Initial Catalog=ComputerAccesoriesRetail;Integrated Security=True;Pooling=False;MultipleActiveResultSets=False;Packet Size=4096</ConnectionString>
-    </ConnectionBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>
     <SchemaCompareSettingsService>
@@ -294,11 +294,11 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetDatabaseName</Name>
-        <Value>ComputerAccesoriesRetail</Value>
+        <Value>RetailStore.DBase</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetConnectionString</Name>
-        <Value>Data Source=DERCOMPUTER;Initial Catalog=ComputerAccesoriesRetail;Integrated Security=True;Pooling=False;MultipleActiveResultSets=False;Packet Size=4096;Application Name="Microsoft SQL Server Data Tools, Schema Compare"</Value>
+        <Value>Integrated Security=True;Pooling=False;Connect Timeout=30</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>TreatVerificationErrorsAsWarnings</Name>

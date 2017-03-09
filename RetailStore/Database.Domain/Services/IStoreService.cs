@@ -14,9 +14,9 @@ namespace DBase.Domain.Services
 {
     public interface IStoreService
     {
-        int Create(AccessoryTable accessoryTable);
-        DataSet Read();
-        void Update(AccessoryTable accessoryTable);
+        int Create(Accessory accessoryTable);
+        IList<Accessory> Read();
+        void Update(Accessory accessoryTable);
         void Delete(int id);        
     }
 

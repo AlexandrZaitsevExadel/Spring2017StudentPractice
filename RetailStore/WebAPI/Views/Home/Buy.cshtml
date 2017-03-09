@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Buy";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Покупка</title>
+</head>
+<body>
+    <div>
+        <h3>Форма оформления покупки</h3>
+        <form method="post">
+            <input type="hidden" value="@ViewBag.accessoryId" name="accessoryId" />
+            <table>
+                <tr>
+                    <td><p>Введите своё имя </p></td>
+                    <td><input type="text" name="clientName" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите количество комплектующих, которое вы хотите купить :</p></td>
+                    <td>
+                        <input type="text" name="quantity" />
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+

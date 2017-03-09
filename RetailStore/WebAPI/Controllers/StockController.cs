@@ -4,42 +4,60 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DBase.Domain.Models;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using DBase.Domain.Models;
+using System.Web.Script.Serialization;
+using DBase.Domain.Services;
+
 
 namespace WebAPI.Controllers
 {
     public class StockController : ApiController
     {
-        static string connectionStringName = "WebAPI.Properties.Settings.ConnectionString";
-        private Database _db = DatabaseFactory.CreateDatabase(connectionStringName);// Нормально ли здесь инстанциировать БД?
+        
+        private Database _db;
+        
+        public StockController()
+        {
+            _db = DatabaseFactory.CreateDatabase("WebAPI.Properties.Settings.ConnectionString");
+        }
+
         [HttpGet]
-        public List<AccessoryTable> GetAllAccessories() //В каком виде лучше возвращать данные? И IEnumerable и List -  браузер не воспринимает, а Postman нормально показывает.
+        [Route("getAccessories")]
+        public IHttpActionResult GetAllAccessories()
         {
 
-            return _db.ExecuteDataSet("spGetAccessoryRecords").Tables[0].AsEnumerable().Select(row => new AccessoryTable(Convert.ToInt32(row["AccessoryId"]), Convert.ToString(row["AccessoryName"]), Convert.ToInt32(row["Price"]))).ToList();
+            IList<Accessory> list = _db.ExecuteDataSet("spGetAccessoryRecords").Tables[0].AsEnumerable().Select(row => new Accessory(Convert.ToInt32(row["AccessoryId"]), Convert.ToString(row["AccessoryName"]), Convert.ToInt32(row["Price"]))).ToList();
+            //IList<Accessory> list = serviceClass.Read();
+            string output = new JavaScriptSerializer().Serialize(list);
+            return Ok<string>(output);
 
         }
 
-
+        
         [HttpPost]
-        public int AddAccessory(int id, string name, int price) //Что должны возвращать методы put, post, delete? 
+        [Route("addAccessory/{id}/{name}/{price}")]
+        public IHttpActionResult AddAccessory(int id, string name, int price)
         {
-            return _db.ExecuteNonQuery("spInsertAccessory", new object[] { id, name, price });
+            return Ok(_db.ExecuteNonQuery("spInsertAccessory", new object[] { id, name, price }));
         }
+        
 
         [HttpDelete]
-        public void DeleteAccessory(int id)
+        [Route("deleteAccessory/{id}")] 
+        public IHttpActionResult DeleteAccessory(int id)
         {
-            _db.ExecuteNonQuery("spDeleteAccessory", new object[] { id });
+            return Ok(_db.ExecuteNonQuery("spDeleteAccessory", new object[] { id }));
         }
-
+        
 
         [HttpPut]
-        public void UpdateAccessory(int id, string name, int price) //Не смог сделать так чтобы параметром была модель - не могу передать её как параметр по url-у, вылетает NullReferenceException, и в put и в post методах.
+        [Route("updateAccessory/{id}/{name}/{price}")]
+        public IHttpActionResult UpdateAccessory(int id, string name, int price)
         {
-            _db.ExecuteNonQuery("spUpdateAccessory", new object[] { id, name, price });
+            return Ok(_db.ExecuteNonQuery("spUpdateAccessory", new object[] { id, name, price }));
         }
+        
     }
 }

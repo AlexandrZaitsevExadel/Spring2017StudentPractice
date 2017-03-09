@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Purchase</title>
+</head>
+<body>
+    <div>
+        <h3>Список покупок</h3>
+        <table>
+            <tr>
+                <td><p> Id покупки </p></td>
+                <td><p> Id комплектующего </p></td>
+                <td><p> Id клиента </p></td>
+                <td><p> Количество купленных комплектующих </p></td>
+                <td><p> Дата покупки </p></td>
+                <td></td>
+            </tr>
+            @foreach (var p in ViewBag.Purchases)
+            {
+                <tr>
+                    <td><p>@p.purchaseId</p></td>
+                    <td><p>@p.accessoryId</p></td>
+                    <td><p>@p.clientId</p></td>
+                    <td><p>@p.quantity</p></td>
+                    <td><p>@p.purchaseDate</p></td>
+                    <td><p><a href="/Home/BuyExtra/@p.purchaseId"> Докупить </a></p></td>
+                    <td><p><a href="/Home/Redo/@p.purchaseId"> Вернуть покупку </a></p></td>
+                </tr>
+            }
+            <tr>
+                <td><p><a href="/Home/Index">На главную</a></p></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

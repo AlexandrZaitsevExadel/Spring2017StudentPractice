@@ -116,9 +116,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ClientTable.cs" />
-    <Compile Include="Models\AccessoryTable.cs" />
-    <Compile Include="Models\PurchaseTable.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Accessory.cs" />
+    <Compile Include="Models\Purchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\StockService.cs" />
     <Compile Include="Services\IStoreService.cs" />

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Redo";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Вернуть покупку</title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <input type="hidden" value="@ViewBag.purchaseId" name="purchaseId" />
+            <table>
+                <tr><td><p>@ViewBag.purchaseId</p></td></tr>
+                <tr></tr>
+                <tr><td><input type="submit" value="Вернуть покупку" /> </td><td></td></tr>
+                <tr></tr>
+                <tr><td><p><a href="/Home/Index">На главную</a></p></td></tr>
+            </table>
+        </form>
+
+    </div>
+</body>
+</html>

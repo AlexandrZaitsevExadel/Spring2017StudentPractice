@@ -1,7 +1,7 @@
-﻿create procedure spInsertAccessory 
-(@id int, @name nvarchar(50), @price int)
+﻿CREATE procedure [dbo].[spInsertAccessory] 
+(@name nvarchar(50), @price int)
 as
 Begin
-	insert into AccessoryTable(AccessoryId, AccessoryName, Price) values (@id, @name, @price);
-	RETURN SCOPE_IDENTITY();
+	insert into AccessoryTable(AccessoryName, Price) values (@name, @price);
+	Return SCOPE_IDENTITY();
 End

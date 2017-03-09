@@ -18,10 +18,8 @@ namespace TestWithForm
 {
     public partial class Form1 : Form
     {
-        static string connectionStringName = "TestWithForm.Properties.Settings.Setting";
         IStoreService serviceClass;
-        DataSet accessoryDataSet = new DataSet();
-        private AccessoryTable _accessoryTable;
+        private Accessory _accessory;
 
         public Form1(IStoreService sc)
         {
@@ -31,30 +29,34 @@ namespace TestWithForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataSet accessoryDataSet = serviceClass.Read();
-            dataGridView1.DataSource = accessoryDataSet.Tables[0];
+            dataGridView1.DataSource = serviceClass.Read();
             dataGridView1.AutoGenerateColumns = true;
         }
 
         
         private void button1_Click(object sender, EventArgs e)
         {
-            _accessoryTable = new AccessoryTable(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
-            serviceClass.Create(_accessoryTable);
-            dataGridView1.DataSource = serviceClass.Read().Tables[0];
+            _accessory = new Accessory(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
+            serviceClass.Create(_accessory);
+            dataGridView1.DataSource = serviceClass.Read();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             serviceClass.Delete(Convert.ToInt32(textBox1.Text));
-            dataGridView1.DataSource = serviceClass.Read().Tables[0];
+            dataGridView1.DataSource = serviceClass.Read();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            _accessoryTable = new AccessoryTable(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
-            serviceClass.Update(_accessoryTable);
-            dataGridView1.DataSource = serviceClass.Read().Tables[0];
+            _accessory = new Accessory(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
+            serviceClass.Update(_accessory);
+            dataGridView1.DataSource = serviceClass.Read();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
