@@ -26,8 +26,8 @@ namespace WebAPI.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DERCOMPUTER;Initial Catalog=ComputerAccesoriesRetail;Integrated Secur" +
-            "ity=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DERCOMPUTER\\SQLEXPRESS;Initial Catalog=ComputerAccesoriesRetail;Integ" +
+            "rated Security=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

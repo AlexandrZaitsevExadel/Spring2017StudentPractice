@@ -1,0 +1,19 @@
+﻿[{
+    "purchaseId": 1,
+    "accessoryId": 1,
+    "clientId": 1,
+    "quantity": 1,
+    "purchaseDate": "2014-01-01"
+},{
+    "purchaseId": 1,
+    "accessoryId": 1,
+    "clientId": 1,
+    "quantity": 1,
+    "purchaseDate": "2014-01-01"
+},{
+    "purchaseId": 1,
+    "accessoryId": 1,
+    "clientId": 1,
+    "quantity": 1,
+    "purchaseDate": "2014-01-01"
+}]

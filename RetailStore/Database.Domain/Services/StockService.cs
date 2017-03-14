@@ -21,7 +21,7 @@ namespace DBase.Domain.Services
 
         public int Create(Accessory accessory)
         {
-            return _db.ExecuteNonQuery("spInsertAccessory", new object[] { accessory.accessoryId, accessory.accessoryName, accessory.price });
+            return _db.ExecuteNonQuery("spInsertAccessory", new object[] { accessory.accessoryName, accessory.price });
         }
 
         public IList<Accessory> Read()

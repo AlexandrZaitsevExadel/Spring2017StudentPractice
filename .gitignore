@@ -9,3 +9,11 @@
 *.user
 /RetailStore/WebAPI/bin
 /RetailStore/WebAPI/obj
+/RetailStore/TestWithForm/bin/Debug
+/RetailStore/TestWithForm/obj/Debug
+[Bb]in
+[Oo]bj
+[Dd]ebug
+packages
+node_modules
+\Debug

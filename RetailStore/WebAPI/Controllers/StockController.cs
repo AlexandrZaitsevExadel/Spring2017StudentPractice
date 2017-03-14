@@ -58,6 +58,32 @@ namespace WebAPI.Controllers
         {
             return Ok(_db.ExecuteNonQuery("spUpdateAccessory", new object[] { id, name, price }));
         }
-        
+
+        [HttpGet,Route("api/purchases")]
+        public List<Purchase> Purchases()
+        {
+            return _db.ExecuteDataSet("spGetPurchaseRecords").Tables[0].AsEnumerable().Select(row => new Purchase(Convert.ToInt32(row["PurchaseId"]), Convert.ToInt32(row["AccessoryId"]), Convert.ToInt32(row["ClientId"]), Convert.ToInt32(row["Quantity"]), Convert.ToDateTime(row["PurchaseDate"]))).ToList();
+        }
+
+        [HttpPost]
+        public IHttpActionResult Purchase([FromBody]Purchase purchase, [FromBody]string clientName)
+        {
+
+            purchase.purchaseDate = DateTime.Now;
+            return Ok(_db.ExecuteNonQuery("spInsertPurchase", new object[] { purchase.accessoryId, clientName, purchase.quantity, purchase.purchaseDate }));
+        }
+
+        [HttpPut, Route("api/purchases")]
+        public IHttpActionResult BuyExtra([FromBody]Purchase purchase)
+        {
+            return Ok(_db.ExecuteNonQuery("spUpdatePurchase", new object[] { purchase.purchaseId, purchase.quantity }));
+        }
+
+        [HttpDelete, Route("api/purchases")]
+        public IHttpActionResult Redo(int id)
+        {
+            return Ok(_db.ExecuteNonQuery("spDeletePurchase", new object[] { id }));
+        }
+
     }
 }
