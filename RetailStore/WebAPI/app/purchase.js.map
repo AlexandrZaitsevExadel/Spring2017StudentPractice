@@ -1,1 +1,1 @@
-{"version":3,"file":"purchase.js","sourceRoot":"","sources":["purchase.ts"],"names":[],"mappings":";;AAAA;CAMC;AAND,4BAMC"}
+{"version":3,"file":"purchase.js","sourceRoot":"","sources":["purchase.ts"],"names":[],"mappings":";;AAAA,wCAA2C;AAE3C,iBAAU,EAAE,CAAA;AACZ;IAMI,YAAY,UAAkB,EAC1B,WAAmB,EACnB,QAAgB,EAChB,QAAgB,EAChB,YAAkB;QAClB,IAAI,CAAC,UAAU,GAAG,UAAU,CAAC;QAC7B,IAAI,CAAC,WAAW,GAAG,WAAW,CAAC;QAC/B,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,YAAY,GAAG,YAAY,CAAC;IACrC,CAAC;CACJ;AAjBD,4BAiBC"}

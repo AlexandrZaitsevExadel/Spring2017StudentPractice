@@ -23,10 +23,9 @@ let HttpService = class HttpService {
             'Content-Type': 'application/json; charset=utf-8'
         });
         let options = new http_1.RequestOptions({ headers: headers });
-        //delete model["purchaseId"];
-        let body = JSON.stringify(model) + clientName;
-        //body.concat(clientName);
-        return this.http.post('api/purchases', body, options).subscribe();
+        let body = JSON.stringify(model);
+        console.log(body);
+        return this.http.post('api/purchases?clientName=' + clientName, body, options);
     }
     Update(model) {
         let headers = new http_1.Headers({
