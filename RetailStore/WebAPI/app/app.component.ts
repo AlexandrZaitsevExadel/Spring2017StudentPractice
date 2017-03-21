@@ -1,7 +1,9 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Input, Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { HttpService } from './http.service';
 import { Purchase } from './purchase';
+import { Accessory } from './accessory';
+import { StockPurchase } from './stockPurchase';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 
@@ -11,23 +13,21 @@ import { NgForm } from '@angular/forms';
     selector: 'my-app',
     template: ` <div class='row'>
                     <form>
-                    <div>
-                        <label for="pAccessoryId">AccessoryId *</label>
-                        <input type="number" class="form-control"
-                            [(ngModel)]="addPurchase.accessoryId" name="pAccessoryId" required>
-                    </div>
-                    <div>
+                     <select class="form-control" [(ngModel)]="addPurchase.accessoryId" name="addId" (ngModelChange)="onSelect()">
+                        <option *ngFor="let accessory of accessories" [ngValue]="accessory.accessoryId">{{accessory.accessoryName}}</option>
+                     </select>
+                     <div>
                         <label for="clientName">ClientName *</label>
                         <input type="text" class="form-control"
-                            [(ngModel)]="clientName" name="clientName" required>
+                            [(ngModel)]="addPurchase.clientName" name="clientName" required>
                     </div>
                     <div>
                         <label for="pQuantity">Quantity *</label>
                         <input type="number" class="form-control"
-                            [(ngModel)]="addPurchase.quantity" name="pQuantity" required>
+                            [(ngModel)]="addPurchase.quantity" name="addQuantity" required>
                     </div>
                     <div>
-                        <button type="button" (click)="onAdd(addPurchase, clientName)"
+                        <button type="button" (click)="onAdd(addPurchase)"
                             class="btn btn-primary">Add
                         </button>
                     </div>
@@ -70,31 +70,49 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
     purchases: Purchase[] = [];
-    addPurchase: Purchase = new Purchase(0,0,0,0,new Date());
-    clientName: string;
+    accessories: Accessory[] = [];
+    addPurchase: StockPurchase = { accessoryId: 0, clientName:"", quantity:0};
+
     refresh() {
-        this.httpService.Read().subscribe((resp: Response) => this.purchases = resp.json());
+        this.httpService.readPurchases().subscribe((resp: Response) => this.purchases = resp.json());
     }
-    constructor(private httpService: HttpService) { }
+
+    constructor(private httpService: HttpService) {}
+
     ngOnInit() {
         this.refresh();
+        this.httpService.readAccessories().subscribe((resp: Response) => this.accessories = resp.json());
     }
-    onAdd(addPurchase:Purchase, clientName:string) {
-        this.httpService.Add(addPurchase, clientName).subscribe(
-            data => { console.log("Success! " + data) },
+
+    onAdd(addPurchase: StockPurchase) {
+        this.httpService.add(addPurchase).subscribe(
+            data => {
+                console.log("Success! " + data);
+                this.refresh();
+            },
             error => { console.log(JSON.stringify(addPurchase) + " Error happened : " + error) },
-            function () { console.log("the subscription is completed") }
+            function () {
+                console.log("the subscription is completed");
+                this.refresh();
+            }
 );
     }
-    onUpdate(elem) {
-        this.httpService.Update(elem).subscribe(data => {
-            console.log(JSON.stringify(elem));
+
+    onUpdate(model) {
+        this.httpService.update(model).subscribe(data => {
+            console.log(JSON.stringify(model));
             this.refresh();
         });
         
     }
+
     onDelete(id: number) {
-        this.httpService.Delete(id).subscribe(data => { this.refresh(); });
+        this.httpService.delete(id).subscribe(data => { this.refresh(); });
         this.refresh();
+    }
+
+    onSelect()
+    {
+        console.log("addPurchase.accessoryId = " + this.addPurchase.accessoryId);
     }
 }

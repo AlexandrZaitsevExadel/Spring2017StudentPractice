@@ -15,19 +15,22 @@ let HttpService = class HttpService {
     constructor(http) {
         this.http = http;
     }
-    Read() {
+    readPurchases() {
         return this.http.get('api/purchases');
     }
-    Add(model, clientName) {
+    readAccessories() {
+        return this.http.get('api/accessories');
+    }
+    add(model) {
         let headers = new http_1.Headers({
             'Content-Type': 'application/json; charset=utf-8'
         });
         let options = new http_1.RequestOptions({ headers: headers });
         let body = JSON.stringify(model);
         console.log(body);
-        return this.http.post('api/purchases?clientName=' + clientName, body, options);
+        return this.http.post('api/purchases', body, options);
     }
-    Update(model) {
+    update(model) {
         let headers = new http_1.Headers({
             'Content-Type': 'application/json; charset=utf-8'
         });
@@ -35,7 +38,7 @@ let HttpService = class HttpService {
         let body = JSON.stringify(model);
         return this.http.put('api/purchases', body, options);
     }
-    Delete(id) {
+    delete(id) {
         return this.http.delete('api/purchases?id=' + id);
     }
 };

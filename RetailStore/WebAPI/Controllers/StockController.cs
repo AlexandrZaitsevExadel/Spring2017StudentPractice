@@ -9,6 +9,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using DBase.Domain.Models;
 using System.Web.Script.Serialization;
 using DBase.Domain.Services;
+using WebAPI.Models;
 
 
 namespace WebAPI.Controllers
@@ -24,14 +25,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getAccessories")]
-        public IHttpActionResult GetAllAccessories()
+        [Route("api/accessories")]
+        public IList<Accessory> Accessories()
         {
-
-            IList<Accessory> list = _db.ExecuteDataSet("spGetAccessoryRecords").Tables[0].AsEnumerable().Select(row => new Accessory(Convert.ToInt32(row["AccessoryId"]), Convert.ToString(row["AccessoryName"]), Convert.ToInt32(row["Price"]))).ToList();
             //IList<Accessory> list = serviceClass.Read();
-            string output = new JavaScriptSerializer().Serialize(list);
-            return Ok<string>(output);
+            return _db.ExecuteDataSet("spGetAccessoryRecords").Tables[0].AsEnumerable().Select(row => new Accessory(Convert.ToInt32(row["AccessoryId"]), Convert.ToString(row["AccessoryName"]), Convert.ToInt32(row["Price"]))).ToList();
 
         }
 
@@ -66,9 +64,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost, Route("api/purchases")]
-        public IHttpActionResult Purchase([FromBody]Purchase purchase, [FromUri]string clientName)
+        public IHttpActionResult Purchase([FromBody]StockPurchase stockPurchase)
         {
-            return Ok(_db.ExecuteNonQuery("spInsertPurchase", new object[] { purchase.accessoryId, clientName, purchase.quantity, DateTime.Now }));
+            return Ok(_db.ExecuteNonQuery("spInsertPurchase", new object[] { stockPurchase.accessoryId, stockPurchase.clientName, stockPurchase.quantity, DateTime.Now }));
         }
 
         [HttpPut, Route("api/purchases")]

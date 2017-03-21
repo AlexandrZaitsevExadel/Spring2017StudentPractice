@@ -11,31 +11,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const http_service_1 = require("./http.service");
-const purchase_1 = require("./purchase");
 let AppComponent = class AppComponent {
     constructor(httpService) {
         this.httpService = httpService;
         this.purchases = [];
-        this.addPurchase = new purchase_1.Purchase(0, 0, 0, 0, new Date());
+        this.accessories = [];
+        this.addPurchase = { accessoryId: 0, clientName: "", quantity: 0 };
     }
     refresh() {
-        this.httpService.Read().subscribe((resp) => this.purchases = resp.json());
+        this.httpService.readPurchases().subscribe((resp) => this.purchases = resp.json());
     }
     ngOnInit() {
         this.refresh();
+        this.httpService.readAccessories().subscribe((resp) => this.accessories = resp.json());
     }
-    onAdd(addPurchase, clientName) {
-        this.httpService.Add(addPurchase, clientName).subscribe(data => { console.log("Success! " + data); }, error => { console.log(JSON.stringify(addPurchase) + " Error happened : " + error); }, function () { console.log("the subscription is completed"); });
+    onAdd(addPurchase) {
+        this.httpService.add(addPurchase).subscribe(data => {
+            console.log("Success! " + data);
+            this.refresh();
+        }, error => { console.log(JSON.stringify(addPurchase) + " Error happened : " + error); }, function () {
+            console.log("the subscription is completed");
+            this.refresh();
+        });
     }
-    onUpdate(elem) {
-        this.httpService.Update(elem).subscribe(data => {
-            console.log(JSON.stringify(elem));
+    onUpdate(model) {
+        this.httpService.update(model).subscribe(data => {
+            console.log(JSON.stringify(model));
             this.refresh();
         });
     }
     onDelete(id) {
-        this.httpService.Delete(id).subscribe(data => { this.refresh(); });
+        this.httpService.delete(id).subscribe(data => { this.refresh(); });
         this.refresh();
+    }
+    onSelect() {
+        console.log("addPurchase.accessoryId = " + this.addPurchase.accessoryId);
     }
 };
 AppComponent = __decorate([
@@ -43,23 +53,21 @@ AppComponent = __decorate([
         selector: 'my-app',
         template: ` <div class='row'>
                     <form>
-                    <div>
-                        <label for="pAccessoryId">AccessoryId *</label>
-                        <input type="number" class="form-control"
-                            [(ngModel)]="addPurchase.accessoryId" name="pAccessoryId" required>
-                    </div>
-                    <div>
+                     <select class="form-control" [(ngModel)]="addPurchase.accessoryId" name="addId" (ngModelChange)="onSelect()">
+                        <option *ngFor="let accessory of accessories" [ngValue]="accessory.accessoryId">{{accessory.accessoryName}}</option>
+                     </select>
+                     <div>
                         <label for="clientName">ClientName *</label>
                         <input type="text" class="form-control"
-                            [(ngModel)]="clientName" name="clientName" required>
+                            [(ngModel)]="addPurchase.clientName" name="clientName" required>
                     </div>
                     <div>
                         <label for="pQuantity">Quantity *</label>
                         <input type="number" class="form-control"
-                            [(ngModel)]="addPurchase.quantity" name="pQuantity" required>
+                            [(ngModel)]="addPurchase.quantity" name="addQuantity" required>
                     </div>
                     <div>
-                        <button type="button" (click)="onAdd(addPurchase, clientName)"
+                        <button type="button" (click)="onAdd(addPurchase)"
                             class="btn btn-primary">Add
                         </button>
                     </div>

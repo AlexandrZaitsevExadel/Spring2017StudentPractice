@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 core_1.Injectable();
-class Purchase {
+class Accessory {
 }
-exports.Purchase = Purchase;
-//# sourceMappingURL=purchase.js.map
+exports.Accessory = Accessory;
+//# sourceMappingURL=Accessory.js.map

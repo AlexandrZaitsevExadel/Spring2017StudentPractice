@@ -1,11 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 
 Injectable()
-export class Purchase {
-    purchaseId: number;
+export class StockPurchase {
     accessoryId: number;
-    clientId: number;
+    clientName: string;
     quantity: number;
-    purchaseDate: Date;
-    
 }
