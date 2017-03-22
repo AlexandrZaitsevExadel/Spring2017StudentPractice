@@ -303,6 +303,7 @@
     <Compile Include="Utils\AutofacConfig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.component.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
