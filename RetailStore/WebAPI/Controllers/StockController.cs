@@ -9,7 +9,6 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using DBase.Domain.Models;
 using System.Web.Script.Serialization;
 using DBase.Domain.Services;
-using WebAPI.Models;
 
 
 namespace WebAPI.Controllers
@@ -17,19 +16,18 @@ namespace WebAPI.Controllers
     public class StockController : ApiController
     {
         
-        private Database _db;
+        private IStoreService serviceClass;
         
         public StockController()
         {
-            _db = DatabaseFactory.CreateDatabase("WebAPI.Properties.Settings.ConnectionString");
+            serviceClass = new StockService("WebAPI.Properties.Settings.ConnectionString");
         }
 
         [HttpGet]
         [Route("api/accessories")]
         public IList<Accessory> Accessories()
         {
-            //IList<Accessory> list = serviceClass.Read();
-            return _db.ExecuteDataSet("spGetAccessoryRecords").Tables[0].AsEnumerable().Select(row => new Accessory(Convert.ToInt32(row["AccessoryId"]), Convert.ToString(row["AccessoryName"]), Convert.ToInt32(row["Price"]))).ToList();
+            return serviceClass.GetAccessories();
 
         }
 
@@ -38,7 +36,7 @@ namespace WebAPI.Controllers
         [Route("addAccessory/{id}/{name}/{price}")]
         public IHttpActionResult AddAccessory(int id, string name, int price)
         {
-            return Ok(_db.ExecuteNonQuery("spInsertAccessory", new object[] { id, name, price }));
+            return Ok(serviceClass.CreateAccessory(new Accessory(id, name, price)));
         }
         
 
@@ -46,7 +44,7 @@ namespace WebAPI.Controllers
         [Route("deleteAccessory/{id}")] 
         public IHttpActionResult DeleteAccessory(int id)
         {
-            return Ok(_db.ExecuteNonQuery("spDeleteAccessory", new object[] { id }));
+            return Ok(serviceClass.DeleteAccessory(id));
         }
         
 
@@ -54,31 +52,31 @@ namespace WebAPI.Controllers
         [Route("updateAccessory/{id}/{name}/{price}")]
         public IHttpActionResult UpdateAccessory(int id, string name, int price)
         {
-            return Ok(_db.ExecuteNonQuery("spUpdateAccessory", new object[] { id, name, price }));
+            return Ok(serviceClass.UpdateAccessory(new Accessory(id, name, price)));
         }
 
         [HttpGet,Route("api/purchases")]
-        public List<Purchase> Purchases()
+        public IList<Purchase> Purchases()
         {
-            return _db.ExecuteDataSet("spGetPurchaseRecords").Tables[0].AsEnumerable().Select(row => new Purchase(Convert.ToInt32(row["PurchaseId"]), Convert.ToInt32(row["AccessoryId"]), Convert.ToInt32(row["ClientId"]), Convert.ToInt32(row["Quantity"]), Convert.ToDateTime(row["PurchaseDate"]))).ToList();
+            return serviceClass.GetPurchases();
         }
 
         [HttpPost, Route("api/purchases")]
         public IHttpActionResult Purchase([FromBody]StockPurchase stockPurchase)
         {
-            return Ok(_db.ExecuteNonQuery("spInsertPurchase", new object[] { stockPurchase.accessoryId, stockPurchase.clientName, stockPurchase.quantity, DateTime.Now }));
+            return Ok(serviceClass.CreatePurchase(stockPurchase));
         }
 
         [HttpPut, Route("api/purchases")]
         public IHttpActionResult BuyExtra([FromBody]Purchase purchase)
         {
-            return Ok(_db.ExecuteNonQuery("spUpdatePurchase", new object[] { purchase.purchaseId, purchase.quantity }));
+            return Ok(serviceClass.UpdatePurchase(purchase));
         }
 
         [HttpDelete, Route("api/purchases")]
         public IHttpActionResult Redo(int id)
         {
-            return Ok(_db.ExecuteNonQuery("spDeletePurchase", new object[] { id }));
+            return Ok(serviceClass.DeletePurchase(id));
         }
 
     }

@@ -96,3 +96,7 @@ C:\Users\DerNord\Source\Repos\Spring2017StudentPractice\RetailStore\TestWithForm
 C:\Users\DerNord\Source\Repos\Spring2017StudentPractice\RetailStore\TestWithForm\bin\Debug\System.Web.WebPages.xml
 C:\Users\DerNord\Source\Repos\Spring2017StudentPractice\RetailStore\TestWithForm\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\DerNord\Source\Repos\Spring2017StudentPractice\RetailStore\TestWithForm\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Der Nord\Source\Repos\Spring2017StudentPractice\RetailStore\TestWithForm\obj\Debug\TestWithForm.csprojResolveAssemblyReference.cache
+C:\Users\Der Nord\Source\Repos\Spring2017StudentPractice\RetailStore\TestWithForm\obj\Debug\TestWithForm.Form1.resources
+C:\Users\Der Nord\Source\Repos\Spring2017StudentPractice\RetailStore\TestWithForm\obj\Debug\TestWithForm.Properties.Resources.resources
+C:\Users\Der Nord\Source\Repos\Spring2017StudentPractice\RetailStore\TestWithForm\obj\Debug\TestWithForm.csproj.GenerateResource.Cache

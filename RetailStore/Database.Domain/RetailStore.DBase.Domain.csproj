@@ -115,6 +115,7 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Accessory.cs" />
     <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\StockPurchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\StockService.cs" />
     <Compile Include="Services\IStoreService.cs" />

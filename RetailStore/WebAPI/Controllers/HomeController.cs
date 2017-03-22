@@ -6,22 +6,23 @@ using System.Web.Mvc;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using DBase.Domain.Models;
+using DBase.Domain.Services;
 
 namespace WebAPI.Controllers
 {
     public class HomeController : Controller
     {
-        private Database _db;
+        private IStoreService serviceClass;
 
         public HomeController()
         {
-            _db = DatabaseFactory.CreateDatabase("WebAPI.Properties.Settings.ConnectionString");
+            serviceClass = new StockService("WebAPI.Properties.Settings.ConnectionString");
         }
 
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            ViewBag.Accessories = _db.ExecuteDataSet("spGetAccessoryRecords").Tables[0].AsEnumerable().Select(row => new Accessory(Convert.ToInt32(row["AccessoryId"]), Convert.ToString(row["AccessoryName"]), Convert.ToInt32(row["Price"]))).ToList();
+            ViewBag.Accessories = serviceClass.GetAccessories();
             return View();
         }
 
@@ -38,11 +39,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Buy(Purchase purchase, string clientName)
+        public ActionResult Buy(StockPurchase stockPurchase)
         {
 
-            purchase.purchaseDate = DateTime.Now;
-            _db.ExecuteNonQuery("spInsertPurchase", new object[] { purchase.accessoryId, clientName, purchase.quantity, purchase.purchaseDate });
+            serviceClass.CreatePurchase(stockPurchase);
             Purchase();
             return View("Purchase");
         }
@@ -50,7 +50,7 @@ namespace WebAPI.Controllers
 
         public ActionResult Purchase()
         {
-            ViewBag.Purchases = _db.ExecuteDataSet("spGetPurchaseRecords").Tables[0].AsEnumerable().Select(row => new Purchase(Convert.ToInt32(row["PurchaseId"]), Convert.ToInt32(row["AccessoryId"]), Convert.ToInt32(row["ClientId"]), Convert.ToInt32(row["Quantity"]), Convert.ToDateTime(row["PurchaseDate"]))).ToList();
+            ViewBag.Purchases = serviceClass.GetPurchases();
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public ActionResult BuyExtra(Purchase purchase)
         {
-            _db.ExecuteNonQuery("spUpdatePurchase", new object[] { purchase.purchaseId, purchase.quantity });
+            serviceClass.UpdatePurchase(purchase);
             Purchase();
             return View("Purchase");
         }
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public ActionResult Redo(Purchase purchase)
         {
-            _db.ExecuteNonQuery("spDeletePurchase", new object[] { purchase.purchaseId });
+            serviceClass.DeletePurchase(purchase.purchaseId);
             Purchase();
             return View("Purchase");
         }
@@ -86,6 +86,5 @@ namespace WebAPI.Controllers
 
 
 
-        //Вероятно стоит создать отдельный файл для констант, куда, например, названия сторед процедур складывать..
     }
 }

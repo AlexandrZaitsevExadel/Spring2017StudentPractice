@@ -29,7 +29,7 @@ namespace TestWithForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = serviceClass.Read();
+            dataGridView1.DataSource = serviceClass.GetAccessories();
             dataGridView1.AutoGenerateColumns = true;
         }
 
@@ -37,21 +37,21 @@ namespace TestWithForm
         private void button1_Click(object sender, EventArgs e)
         {
             _accessory = new Accessory(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
-            serviceClass.Create(_accessory);
-            dataGridView1.DataSource = serviceClass.Read();
+            serviceClass.CreateAccessory(_accessory);
+            dataGridView1.DataSource = serviceClass.GetAccessories();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            serviceClass.Delete(Convert.ToInt32(textBox1.Text));
-            dataGridView1.DataSource = serviceClass.Read();
+            serviceClass.DeleteAccessory(Convert.ToInt32(textBox1.Text));
+            dataGridView1.DataSource = serviceClass.GetAccessories();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             _accessory = new Accessory(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToInt32(textBox3.Text));
-            serviceClass.Update(_accessory);
-            dataGridView1.DataSource = serviceClass.Read();
+            serviceClass.UpdateAccessory(_accessory);
+            dataGridView1.DataSource = serviceClass.GetAccessories();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
