@@ -16,30 +16,30 @@ let HttpService = class HttpService {
         this.http = http;
     }
     readPurchases() {
-        return this.http.get('api/purchases');
+        return this.http.get("api/purchases");
     }
     readAccessories() {
-        return this.http.get('api/accessories');
+        return this.http.get("api/accessories");
     }
     add(model) {
-        let headers = new http_1.Headers({
-            'Content-Type': 'application/json; charset=utf-8'
+        const headers = new http_1.Headers({
+            'Content-Type': "application/json; charset=utf-8"
         });
-        let options = new http_1.RequestOptions({ headers: headers });
-        let body = JSON.stringify(model);
+        const options = new http_1.RequestOptions({ headers: headers });
+        const body = JSON.stringify(model);
         console.log(body);
-        return this.http.post('api/purchases', body, options);
+        return this.http.post("api/purchases", body, options);
     }
     update(model) {
-        let headers = new http_1.Headers({
-            'Content-Type': 'application/json; charset=utf-8'
+        const headers = new http_1.Headers({
+            'Content-Type': "application/json; charset=utf-8"
         });
-        let options = new http_1.RequestOptions({ headers: headers });
-        let body = JSON.stringify(model);
-        return this.http.put('api/purchases', body, options);
+        const options = new http_1.RequestOptions({ headers: headers });
+        const body = JSON.stringify(model);
+        return this.http.put("api/purchases", body, options);
     }
     delete(id) {
-        return this.http.delete('api/purchases?id=' + id);
+        return this.http.delete(`api/purchases?id=${id}`);
     }
 };
 HttpService = __decorate([

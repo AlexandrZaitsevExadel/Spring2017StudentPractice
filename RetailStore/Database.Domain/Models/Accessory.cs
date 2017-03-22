@@ -4,18 +4,18 @@
     {
         public Accessory(int id, string name, int price)
         {
-            this.accessoryId = id;
-            this.accessoryName = name;
-            this.price = price;
+            AccessoryId = id;
+            AccessoryName = name;
+            this.Price = price;
         }
         public Accessory()
         {
-            this.accessoryId = 0;
-            this.accessoryName = "";
-            this.price = 0;
+            AccessoryId = 0;
+            AccessoryName = "";
+            Price = 0;
         }
-        public int accessoryId { get; set; }
-        public string accessoryName { get; set; }
-        public int price { get; set; }
+        public int AccessoryId { get; set; }
+        public string AccessoryName { get; set; }
+        public int Price { get; set; }
     }
 }

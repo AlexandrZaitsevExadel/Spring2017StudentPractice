@@ -20,13 +20,13 @@
             @foreach (var p in ViewBag.Purchases)
             {
                 <tr>
-                    <td><p>@p.purchaseId</p></td>
-                    <td><p>@p.accessoryId</p></td>
-                    <td><p>@p.clientId</p></td>
-                    <td><p>@p.quantity</p></td>
-                    <td><p>@p.purchaseDate</p></td>
-                    <td><p><a href="/Home/BuyExtra/@p.purchaseId"> Докупить </a></p></td>
-                    <td><p><a href="/Home/Redo/@p.purchaseId"> Вернуть покупку </a></p></td>
+                    <td><p>@p.PurchaseId</p></td>
+                    <td><p>@p.AccessoryId</p></td>
+                    <td><p>@p.ClientId</p></td>
+                    <td><p>@p.Quantity</p></td>
+                    <td><p>@p.PurchaseDate</p></td>
+                    <td><p><a href="/Home/BuyExtra/@p.PurchaseId"> Докупить </a></p></td>
+                    <td><p><a href="/Home/Redo/@p.PurchaseId"> Вернуть покупку </a></p></td>
                 </tr>
             }
             <tr>

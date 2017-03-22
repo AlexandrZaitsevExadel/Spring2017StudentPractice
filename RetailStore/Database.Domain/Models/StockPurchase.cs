@@ -4,21 +4,21 @@ namespace DBase.Domain.Models
 {
     public class StockPurchase
     {
-        public int accessoryId { get; set; }
-        public string clientName { get; set; }
-        public int quantity { get; set; }
+        public int AccessoryId { get; set; }
+        public string ClientName { get; set; }
+        public int Quantity { get; set; }
 
         public StockPurchase()
         {
-            this.accessoryId = 0;
-            this.clientName = "";
-            this.quantity = 0;
+            AccessoryId = 0;
+            ClientName = "";
+            Quantity = 0;
         }
         public StockPurchase(int accessoryId, string clientName, int quantity)
         {
-            this.accessoryId = accessoryId;
-            this.clientName = clientName;
-            this.quantity = quantity;
+            this.AccessoryId = accessoryId;
+            this.ClientName = clientName;
+            this.Quantity = quantity;
         }
     }
 }

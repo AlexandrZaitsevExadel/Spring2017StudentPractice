@@ -1,1 +1,1 @@
-{"version":3,"file":"Accessory.js","sourceRoot":"","sources":["Accessory.ts"],"names":[],"mappings":";;AAAA,wCAA2C;AAE3C,iBAAU,EAAE,CAAA;AACZ;CAGC;AAHD,8BAGC"}
+{"version":3,"file":"accessory.js","sourceRoot":"","sources":["accessory.ts"],"names":[],"mappings":";;;;;;;;AAAA,wCAA2C;AAG3C,IAAa,SAAS,GAAtB;CAGC,CAAA;AAHY,SAAS;IADrB,iBAAU,EAAE;GACA,SAAS,CAGrB;AAHY,8BAAS"}

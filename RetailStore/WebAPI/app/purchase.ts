@@ -1,6 +1,6 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable } from "@angular/core";
 
-Injectable()
+@Injectable()
 export class Purchase {
     purchaseId: number;
     accessoryId: number;

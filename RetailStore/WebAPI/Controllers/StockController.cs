@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
-using System.Data;
-using Microsoft.Practices.EnterpriseLibrary.Data;
 using DBase.Domain.Models;
-using System.Web.Script.Serialization;
 using DBase.Domain.Services;
 
 
@@ -16,18 +9,18 @@ namespace WebAPI.Controllers
     public class StockController : ApiController
     {
         
-        private IStoreService serviceClass;
+        private readonly IStoreService _serviceClass;
         
         public StockController()
         {
-            serviceClass = new StockService("WebAPI.Properties.Settings.ConnectionString");
+            _serviceClass = new StockService("WebAPI.Properties.Settings.ConnectionString");
         }
 
         [HttpGet]
         [Route("api/accessories")]
         public IList<Accessory> Accessories()
         {
-            return serviceClass.GetAccessories();
+            return _serviceClass.GetAccessories();
 
         }
 
@@ -36,7 +29,7 @@ namespace WebAPI.Controllers
         [Route("addAccessory/{id}/{name}/{price}")]
         public IHttpActionResult AddAccessory(int id, string name, int price)
         {
-            return Ok(serviceClass.CreateAccessory(new Accessory(id, name, price)));
+            return Ok(_serviceClass.CreateAccessory(new Accessory(id, name, price)));
         }
         
 
@@ -44,7 +37,7 @@ namespace WebAPI.Controllers
         [Route("deleteAccessory/{id}")] 
         public IHttpActionResult DeleteAccessory(int id)
         {
-            return Ok(serviceClass.DeleteAccessory(id));
+            return Ok(_serviceClass.DeleteAccessory(id));
         }
         
 
@@ -52,31 +45,31 @@ namespace WebAPI.Controllers
         [Route("updateAccessory/{id}/{name}/{price}")]
         public IHttpActionResult UpdateAccessory(int id, string name, int price)
         {
-            return Ok(serviceClass.UpdateAccessory(new Accessory(id, name, price)));
+            return Ok(_serviceClass.UpdateAccessory(new Accessory(id, name, price)));
         }
 
         [HttpGet,Route("api/purchases")]
         public IList<Purchase> Purchases()
         {
-            return serviceClass.GetPurchases();
+            return _serviceClass.GetPurchases();
         }
 
         [HttpPost, Route("api/purchases")]
         public IHttpActionResult Purchase([FromBody]StockPurchase stockPurchase)
         {
-            return Ok(serviceClass.CreatePurchase(stockPurchase));
+            return Ok(_serviceClass.CreatePurchase(stockPurchase));
         }
 
         [HttpPut, Route("api/purchases")]
         public IHttpActionResult BuyExtra([FromBody]Purchase purchase)
         {
-            return Ok(serviceClass.UpdatePurchase(purchase));
+            return Ok(_serviceClass.UpdatePurchase(purchase));
         }
 
         [HttpDelete, Route("api/purchases")]
         public IHttpActionResult Redo(int id)
         {
-            return Ok(serviceClass.DeletePurchase(id));
+            return Ok(_serviceClass.DeletePurchase(id));
         }
 
     }

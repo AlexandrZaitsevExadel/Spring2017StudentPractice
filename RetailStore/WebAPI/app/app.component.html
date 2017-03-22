@@ -1,24 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 </head>
 <body>
-    <div class='row'>
+    <div class="row">
         <form>
-            <select class="form-control" [(ngModel)]="addPurchase.accessoryId" name="addId" (ngModelChange)="onSelect()">
-                <option *ngFor="let accessory of accessories" [ngValue]="accessory.accessoryId">{{accessory.accessoryName}}</option>
+            <select class="form-control" [(ngModel)]="addPurchase.AccessoryId" name="addId" (ngModelChange)="onSelect()">
+                <option *ngFor="let accessory of accessories" [ngValue]="accessory.AccessoryId">{{accessory.AccessoryName}}</option>
             </select>
             <div>
-                <label for="clientName">ClientName *</label>
+                <label>ClientName *</label>
                 <input type="text" class="form-control"
-                       [(ngModel)]="addPurchase.clientName" name="clientName" required>
+                       [(ngModel)]="addPurchase.ClientName" name="ClientName" required>
             </div>
             <div>
-                <label for="pQuantity">Quantity *</label>
+                <label>Quantity *</label>
                 <input type="number" class="form-control"
-                       [(ngModel)]="addPurchase.quantity" name="addQuantity" required>
+                       [(ngModel)]="addPurchase.Quantity" name="AddQuantity" required>
             </div>
             <div>
                 <button type="button" (click)="onAdd(addPurchase)"
@@ -29,35 +28,38 @@
         </form>
     </div>
     <p></p>
-    <div class='row'>
+    <div class="row">
         <div class="panel panel-default">
-            <div class='panel-heading'>Purchases List</div>
-            <div class='panel-body'>
-                <table class='table table-condensed'>
+            <div class="panel-heading">Purchases List</div>
+            <div class="panel-body">
+                <table class="table table-condensed">
                     <thead>
+                    <tr>
                     <th>PurchaseId</th>
                     <th>AccessoryId</th>
                     <th>ClientId</th>
                     <th>Quantity</th>
                     <th>PurchaseDate</th>
+                    <th>Available actions</th>
+                    </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let purchase of purchases">
-                            <td>{{purchase?.purchaseId}}</td>
-                            <td>{{purchase?.accessoryId}}</td>
-                            <td>{{purchase?.clientId}}</td>
+                            <td>{{purchase?.PurchaseId}}</td>
+                            <td>{{purchase?.AccessoryId}}</td>
+                            <td>{{purchase?.ClientId}}</td>
                             <td>
                                 <input type="text"
-                                       [(ngModel)]="purchase.quantity" name="quantity" class="form-control" />
+                                       [(ngModel)]="purchase.Quantity" name="Quantity" class="form-control" />
                             </td>
-                            <td>{{purchase?.purchaseDate}}</td>
+                            <td>{{purchase?.PurchaseDate}}</td>
                             <td>
                                 <input type="button"
                                        value="BuyExtra" class="btn btn-default"
                                        (click)="onUpdate(purchase)" />
                                 <input type="button" value="Redo"
                                        class="btn btn-danger"
-                                       (click)="onDelete(purchase.purchaseId)" />
+                                       (click)="onDelete(purchase.PurchaseId)" />
                             </td>
                         </tr>
                     </tbody>

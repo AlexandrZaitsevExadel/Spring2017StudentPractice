@@ -50,7 +50,7 @@ let AppComponent = class AppComponent {
 };
 AppComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
+        selector: "my-app",
         templateUrl: `app/app.component.html`,
         providers: [http_service_1.HttpService]
     }),

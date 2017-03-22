@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using DBase.Domain.Models;
@@ -21,7 +19,7 @@ namespace DBase.Domain.Services
 
         public int CreateAccessory(Accessory accessory)
         {
-            return _db.ExecuteNonQuery("spInsertAccessory", new object[] { accessory.accessoryName, accessory.price });
+            return _db.ExecuteNonQuery("spInsertAccessory", new object[] { accessory.AccessoryName, accessory.Price });
         }
 
         public IList<Accessory> GetAccessories()
@@ -33,7 +31,7 @@ namespace DBase.Domain.Services
         public int UpdateAccessory(Accessory accessory)
         {
 
-            return _db.ExecuteNonQuery("spUpdateAccessory", new object[] { accessory.accessoryId, accessory.accessoryName, accessory.price });
+            return _db.ExecuteNonQuery("spUpdateAccessory", new object[] { accessory.AccessoryId, accessory.AccessoryName, accessory.Price });
         }
 
         public int DeleteAccessory(int id)
@@ -49,12 +47,12 @@ namespace DBase.Domain.Services
 
         public int CreatePurchase(StockPurchase stockPurchase)
         {
-            return _db.ExecuteNonQuery("spInsertPurchase", new object[] { stockPurchase.accessoryId, stockPurchase.clientName, stockPurchase.quantity, DateTime.Now });
+            return _db.ExecuteNonQuery("spInsertPurchase", new object[] { stockPurchase.AccessoryId, stockPurchase.ClientName, stockPurchase.Quantity, DateTime.Now });
         }
 
         public int UpdatePurchase(Purchase purchase)
         {
-            return _db.ExecuteNonQuery("spUpdatePurchase", new object[] { purchase.purchaseId, purchase.quantity });
+            return _db.ExecuteNonQuery("spUpdatePurchase", new object[] { purchase.PurchaseId, purchase.Quantity });
         }
 
         public int DeletePurchase(int id)

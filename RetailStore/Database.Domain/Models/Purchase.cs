@@ -3,26 +3,26 @@ namespace DBase.Domain.Models
 {
     public class Purchase
     {
-        public int purchaseId { get; set; }
-        public int accessoryId { get; set; }
-        public int clientId { get; set; }
-        public int quantity { get; set; }
-        public DateTime purchaseDate { get; set; }
+        public int PurchaseId { get; set; }
+        public int AccessoryId { get; set; }
+        public int ClientId { get; set; }
+        public int Quantity { get; set; }
+        public DateTime PurchaseDate { get; set; }
         public Purchase()
         {
-            purchaseId = 0;
-            accessoryId = 0;
-            clientId = 0;
-            quantity = 0;
-            purchaseDate = DateTime.Now;
+            PurchaseId = 0;
+            AccessoryId = 0;
+            ClientId = 0;
+            Quantity = 0;
+            PurchaseDate = DateTime.Now;
         }
         public Purchase(int purchaseId, int accessoryId, int clientId, int quantity, DateTime purchaseDate)
         {
-            this.purchaseId = purchaseId;
-            this.accessoryId = accessoryId;
-            this.clientId = clientId;
-            this.quantity = quantity;
-            this.purchaseDate = purchaseDate;
+            this.PurchaseId = purchaseId;
+            this.AccessoryId = accessoryId;
+            this.ClientId = clientId;
+            this.Quantity = quantity;
+            this.PurchaseDate = purchaseDate;
         }
     }
     

@@ -1,16 +1,16 @@
-﻿import { Input, Component, OnInit } from '@angular/core';
-import { Response } from '@angular/http';
-import { HttpService } from './http.service';
-import { Purchase } from './purchase';
-import { Accessory } from './accessory';
-import { StockPurchase } from './stockPurchase';
-import { Subscription } from 'rxjs/Subscription';
-import { NgForm } from '@angular/forms';
+﻿import { Input, Component, OnInit } from "@angular/core";
+import { Response } from "@angular/http";
+import { HttpService } from "./http.service";
+import { Purchase } from "./purchase";
+import { Accessory } from "./accessory";
+import { StockPurchase } from "./stockPurchase";
+import { Subscription } from "rxjs/Subscription";
+import { NgForm } from "@angular/forms";
 
 
 
 @Component({
-    selector: 'my-app',
+    selector: "my-app",
     templateUrl: `app/app.component.html`,
     providers: [HttpService]
 })

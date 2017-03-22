@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Data;
-using Microsoft.Practices.EnterpriseLibrary.Data;
+﻿using System.Web.Mvc;
 using DBase.Domain.Models;
 using DBase.Domain.Services;
 
@@ -12,17 +6,17 @@ namespace WebAPI.Controllers
 {
     public class HomeController : Controller
     {
-        private IStoreService serviceClass;
+        private readonly IStoreService _serviceClass;
 
         public HomeController()
         {
-            serviceClass = new StockService("WebAPI.Properties.Settings.ConnectionString");
+            _serviceClass = new StockService("WebAPI.Properties.Settings.ConnectionString");
         }
 
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            ViewBag.Accessories = serviceClass.GetAccessories();
+            ViewBag.Accessories = _serviceClass.GetAccessories();
             return View();
         }
 
@@ -34,7 +28,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public ActionResult Buy(int id)
         {
-            ViewBag.accessoryId = id;
+            ViewBag.AccessoryId = id;
             return View();
         }
 
@@ -42,7 +36,7 @@ namespace WebAPI.Controllers
         public ActionResult Buy(StockPurchase stockPurchase)
         {
 
-            serviceClass.CreatePurchase(stockPurchase);
+            _serviceClass.CreatePurchase(stockPurchase);
             Purchase();
             return View("Purchase");
         }
@@ -50,21 +44,21 @@ namespace WebAPI.Controllers
 
         public ActionResult Purchase()
         {
-            ViewBag.Purchases = serviceClass.GetPurchases();
+            ViewBag.Purchases = _serviceClass.GetPurchases();
             return View();
         }
 
         [HttpGet]
         public ActionResult BuyExtra(int id)
         {
-            ViewBag.purchaseId = id;
+            ViewBag.PurchaseId = id;
             return View();
         }
 
         [HttpPost]
         public ActionResult BuyExtra(Purchase purchase)
         {
-            serviceClass.UpdatePurchase(purchase);
+            _serviceClass.UpdatePurchase(purchase);
             Purchase();
             return View("Purchase");
         }
@@ -72,7 +66,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public ActionResult Redo(Purchase purchase)
         {
-            serviceClass.DeletePurchase(purchase.purchaseId);
+            _serviceClass.DeletePurchase(purchase.PurchaseId);
             Purchase();
             return View("Purchase");
         }
@@ -80,7 +74,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public ActionResult Redo(int id)
         {
-            ViewBag.purchaseId = id;
+            ViewBag.PurchaseId = id;
             return View();
         }
 
